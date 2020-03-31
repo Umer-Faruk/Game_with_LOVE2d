@@ -16,3 +16,34 @@ end
 --      -- end
 --      self.v = key
 -- end
+
+function TEXT.pos(x,y,n) 
+    
+     for i=1  ,9 do
+         if m[x][i]==n then
+               print("not valid plCE")
+             return true
+         end
+     end
+ 
+     for i=1 ,9 do 
+         if m[i][y]==n then
+          print("not valid plCE")
+
+             return true
+         end
+ 
+     end
+     for i =1, 3 do
+         for j=1, 3 do
+             if m[i+((x/3)*42)][j+((y/3)*42)]==n then
+               print("not valid plCE")
+
+                 return true
+             end
+           end
+      end
+      print("valid place")
+     return false
+ end
+ 
