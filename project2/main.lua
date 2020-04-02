@@ -1,19 +1,32 @@
 x = 42
 y = 42
+local startf = false
+
+
+
+local buttons ={}
 function love.load()
 
+     print("game options \n q -> quit the Game \n s -> start the Game\n r -> Restart the Game")
+    
      Object = require 'classic'
      require 'text'
+     require 'matrix'
      v = " "
      k = ""
      flag = true
+     timee = 0
+     myfount = love.graphics.newFont(50)
+     
      
 
      t1 = TEXT()
-	
+     m1 = MATRIX()
+     
+    local  m = m1.m
           	
-           mx = 42
-           my = 42
+          
+    
 
      -- m = {
      --      {1,2,3,4,5,6,7,8,9},
@@ -28,18 +41,43 @@ function love.load()
 
      -- }
 
-     m = {
-          {0,0,0,0,0,0,0,0,0},
-          {0,0,0,0,0,0,0,0,0},
-          {0,0,0,0,0,0,0,0,0},
-          {0,0,0,0,0,0,0,0,0},
-          {0,0,0,0,0,0,0,0,0},
-          {0,0,0,0,0,0,0,0,0},
-          {0,0,0,0,0,0,0,0,0},
-          {0,0,0,6,0,0,0,0,0},
-          {0,0,0,0,0,0,0,0,0},
+     -- m = {
+     --      {0,0,0,0,0,0,0,0,0},
+     --      {0,0,0,0,0,0,0,0,0},
+     --      {0,0,0,0,0,0,0,0,0},
+     --      {0,0,0,0,0,0,0,0,0},
+     --      {0,0,0,0,0,0,0,0,0},
+     --      {0,0,0,0,0,0,0,0,0},
+     --      {0,0,0,0,0,0,0,0,0},
+     --      {0,0,0,6,0,0,0,0,0},
+     --      {0,0,0,0,0,0,0,0,0},  
+               -- }
+     -- m={
+     --      {1,2,3,4,5,6,7,8,9},
+     --      {4,5,6,7,8,9,1,2,3},
+     --      {7,8,9,1,2,3,4,5,6},
+     --      {2,3,4,5,6,7,8,9,1},
+     --      {5,6,7,8,9,1,2,3,4},
+     --      {8,9,1,2,3,4,5,6,7},
+     --      {6,7,8,9,1,2,3,4,5},
+     --      {9,1,2,3,4,5,6,7,8},
+     --      {3,4,5,6,7,8,9,1,2},
+     -- }
 
-     }
+
+     -- }
+
+     -- m={
+     --      {1,2,3,4,5,6,7,8,9},
+     --      {4,5,6,7,8,9,1,2,3},
+     --      {7,8,9,1,2,3,4,5,6},
+     --      {2,3,4,5,6,7,8,9,1},
+     --      {5,6,7,8,9,1,2,3,4},
+     --      {8,9,1,2,3,4,5,6,7},
+     --      {6,7,8,9,1,2,3,4,5},
+     --      {9,1,2,3,4,5,6,7,8},
+     --      {3,4,5,6,7,8,9,1,2},
+     -- }
 
      
 end
@@ -61,14 +99,18 @@ function love.update(dt)
 
      -- if v == "5" then
      --      print(v)
-     -- end
-
-
+     -- endt
+     if startf then
+      timee= (timee + 1)
+     end
+  
      
 
 end
  
 function love.draw()
+
+
      for i=1 ,9 do
           for j = 1 ,9 do
                
@@ -88,80 +130,43 @@ function love.draw()
 
      end
 
-     -- if pos(x/42,y/42,k) then
-     --      love.graphics.setColor(255,0,0)
-     --      love.graphics.rectangle("fill",(x/42)*42,(y/42)*42)
-     -- end
-     
-     -- for i=1,3 do
-     --      for j=1,3 do
-     --           love.graphics.setColor(0,25,56)
-     --           love.graphics.rectangle('line',(j*42)+((1/3)*42),(i*42)+((6/3)*42),42,42)
-     --      end
-     -- end
+     -- love.graphics.setFont(myfount)
+     love.graphics.setColor(1,1,1)
+     love.graphics.print("SUDOKU__",570,30)
 
-     
+     love.graphics.setColor(1,1,1)
+     love.graphics.print("time",570,50)
 
+     love.graphics.setColor(1,1,1)
+     love.graphics.print(timee/100,570,70)
 
-
-     -- for i=1,9 do
-     --      if m[x/42][i] == k then
-     --      love.graphics.setColor(0,0,255)
-     --      love.graphics.rectangle("line",(x/42)*42,i*42,42,42)
-     --      end
-     -- end
-
-     
-     -- for j=1,9 do
-     --      if m[j][y/42]==k then
-     --           love.graphics.setColor(255,25,0)
-     --           love.graphics.rectangle("line",(y/42)*42,i*42,42,42)
-
-     --      end
-     -- end
-               
 
      
 
 
-     -- t1.keypressed( key )
      love.graphics.setColor(255,0,0)
      love.graphics.rectangle("line", x, y, 42, 42,6,5,6)
 
-     -- print(mx)
-     -- print(my)
-
-     -- for i=1, #m do 
-     --      for j= 1, #m do
-     --           print(m[i][j])
-     --      end
-     -- end
-     -- print(x,y)
-
-     -- love.graphics.print(text, 0, 0, love.graphics.getWidth())
-     print(v)
-     -- r = {0}
-     -- c = {0}
-     -- b ={0}
      rv=0
      cv =0
      
 
      --row color
-     for i=1,8 do
-          rv =  m[i][y/42]
-          if m[i+1][y/42] == rv then
+     for i=1,9 do
+          -- rv =  m[i][y/42]
+          -- if m[i+1][y/42] == rv then
 
           love.graphics.setColor(0,0,255)
           love.graphics.rectangle("line",i*42,y,42,42)
-          end
+          -- end
      end
-     for j=1,8 do 
-          cv= m[x/42][j]
-          if m[x/42][j+1] == cv then
+
+     for j=1,9 do 
+          -- cv= m[x/42][j]
+          -- if m[x/42][j+1] == cv then
            love.graphics.setColor(0,0,255)
            love.graphics.rectangle("line",x,j*42,42,42)
-          end
+          -- end
      
      end
 
@@ -172,6 +177,32 @@ function love.draw()
      --      end
      -- end
 
+
+
+     bx=570
+     
+     -- by=
+    
+     love.graphics.setColor(0.4,0.4,0.5,1.0)
+     love.graphics.print("game options \n s -> Start the Game\n q -> Quit the Game \n ",570,400)
+
+     love.graphics.rectangle("fill",bx,100,200,50,12)
+
+     love.graphics.rectangle("fill",bx,180,200,50,12)
+
+     love.graphics.rectangle("fill",bx,260,200,50,12)
+
+
+     
+
+     
+     love.graphics.setColor(1,1,1)
+     -- love.graphics.setFont()
+     love.graphics.print("Start Game",bx+60,110)
+     love.graphics.print("Restrat Game",bx+60,190)
+     love.graphics.print("Exit Game",bx+60,270)
+     
+     
 
 
 
@@ -213,120 +244,64 @@ function love.keypressed(key)
      end
      
      if key == 'kp1'  or key == '1' then 
-          m[y/42][x/42]=1
-          flag = validate(x,y,m,1)
+          m[y/42][x/42]= "1"
+          -- flag = validate(x,y,m,1)
           
      
      elseif key == "2" or key == 'kp2' then
-          m[y/42][x/42]= 2
-          flag = validate(x,y,m,2)
+          m[y/42][x/42]= "2"
+          -- flag = validate(x,y,m,2)
 
      elseif key == "3"  or key =='kp3' then
-          m[y/42][x/42]= 3
-          flag = validate(x,y,m,3)
+          m[y/42][x/42]= "3"
+          -- flag = validate(x,y,m,3)
 
      elseif key == "4"  or key =='kp4' then
-          m[y/42][x/42]= 4
-          flag = validate(x,y,m,4)
+          m[y/42][x/42]= "4"
+          -- flag = validate(x,y,m,4)
 
      elseif key == "5" or key =='kp5' then
-          m[y/42][x/42]= 5 
-          flag = validate(x,y,m,5)
+          m[y/42][x/42]= "5"
+          -- flag = validate(x,y,m,5)
 
      elseif key == "6" or key =='kp6' then
-          m[y/42][x/42]= 6
-          flag = validate(x,y,m,6)
+          m[y/42][x/42]= "6"
+          -- flag = validate(x,y,m,6)
 
      elseif key == "7" or key =='kp7' then
-          m[y/42][x/42]= 7
-          flag = validate(x,y,m,7)
+          m[y/42][x/42]= "7"
+          -- flag = validate(x,y,m,7)
 
      elseif key == "8" or key =='kp8' then
-          m[y/42][x/42]= 8
-          flag = validate(x,y,m,8)
+          m[y/42][x/42]= "8"
+          -- flag = validate(x,y,m,8)
 
      elseif key == "9" or key =='kp9' then
-          m[y/42][x/42]= 9
-          flag = validate(x,y,m,9)
+          m[y/42][x/42]= "9"
+          -- flag = validate(x,y,m,9)
      end
 
      
-     -- if key == "v" the
-     --      -- for i=1,9 do
-          
-     --           flag = validate(x,y,m,)
-     --      -- end
-     -- end
+     if key == "v" then
+          for i=1,9 do
+               flag = t1.validate(x,y,m,i)
+          end
+     end
  
-    
-
-end
-
-
--- function pos(x,y,n) 
-    
---     for i=1  ,9 do
---         if m[x][i]== n then
---             return true
---         end
---     end
-
---     for i=1 ,9 do 
---         if m[i][y]==n then
---             return true
---         end
-
---     end
---     for i =1, 3 do
---         for j=1, 3 do
---             if m[i+((x/3)*42)][j+((y/3)*42)]==n then
---                 return true
---             end
---           end
---      end
---     return false
--- end
-
-
-
-function validate(x,y,m,vv)
-
-     r = 0
-     c = 0
-     b =0
-
-     for i =1 ,9 do
-
-          if m[x/42][i] == vv then
-               r = r+1
-               if r >= 2 then
-                    return false
-               end
-               
-          end
+     if key == "q" or ker =="Q" then
+     
+          love.event.quit()
      end
-     for i=1 ,9 do 
-           if m[i][y/42]== vv then
-               c = c +1
-               if c >= 2 then
 
-                     return false
-               end
-          end
-          
-      end
-     -- for i =1, 3 do
-     --    for j=1, 3 do
-     --        if m[i+(((x/42)/3)*42)][j+(((y/42)/3)*42)]== vv  then
-     --            return false
-     --        end
-     --      end
-     -- end
+     if key == "s" or key == "S" then 
+          startf = true
+     end
     
-      return true
-     
 
-     
 end
+
+
+
+
 
 
