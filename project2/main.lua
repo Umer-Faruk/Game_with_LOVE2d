@@ -4,7 +4,8 @@ local startf = false
 
 
 
-local buttons ={}
+local sbutton ={x =570,y=130,width=200,height=50,12,c={0.4,0.4,0.5,1.0}}
+local ebutton = {x=570,y=200,width=200,height=50}
 function love.load()
 
      print("game options \n q -> quit the Game \n s -> start the Game\n r -> Restart the Game")
@@ -16,92 +17,52 @@ function love.load()
      k = ""
      flag = true
      timee = 0
-     myfount = love.graphics.newFont(50)
+     myfount = love.graphics.newFont(20)
      
      
 
      t1 = TEXT()
      m1 = MATRIX()
-     
-    local  m = m1.m
+
+     -- local  m =  {
+     --      {0,0,0,0,0,0,0,0,0},
+     --      {0,0,0,0,0,0,0,0,0},
+     --      {0,0,0,0,0,0,0,0,0},
+     --      {0,0,0,0,0,0,0,0,0},
+     --      {0,0,0,0,0,0,0,0,0},
+     --      {0,0,0,0,0,0,0,0,0},
+     --      {0,0,0,0,0,0,0,0,0},
+     --      {0,0,0,0,0,0,0,0,0},
+     --      {0,0,0,0,0,0,0,0,0},  
+     --      }
+
+          m= {
+
+
+               {5,3,0,0,7,0,0,0,0},
+               {6,0,0,1,9,5,0,0,0},
+               {0,9,8,0,0,0,0,6,0},
+               {8,0,0,0,6,0,0,0,3},
+               {4,0,0,8,0,3,0,0,1},
+               {7,0,0,0,2,0,0,0,6},
+               {0,6,0,0,0,0,2,8,0},
+               {0,0,0,4,1,9,0,0,5},
+               {0,0,0,0,8,0,0,7,9},
+          }
+
+    
           	
           
     
 
-     -- m = {
-     --      {1,2,3,4,5,6,7,8,9},
-     --      {2,3,4,5,6,7,8,9,1},
-     --      {2,3,4,5,6,7,8,6,5},
-     --      {3,4,5,6,5,4,3,2,1},
-     --      {2,3,4,5,6,7,8,9,6},
-     --      {4,5,6,3,4,5,6,7,2},
-     --      {4,5,6,7,3,6,3,1,4},
-     --      {5,3,2,6,4,7,8,3,8},
-     --      {3,4,5,6,1,2,4,5,6},
-
-     -- }
-
-     -- m = {
-     --      {0,0,0,0,0,0,0,0,0},
-     --      {0,0,0,0,0,0,0,0,0},
-     --      {0,0,0,0,0,0,0,0,0},
-     --      {0,0,0,0,0,0,0,0,0},
-     --      {0,0,0,0,0,0,0,0,0},
-     --      {0,0,0,0,0,0,0,0,0},
-     --      {0,0,0,0,0,0,0,0,0},
-     --      {0,0,0,6,0,0,0,0,0},
-     --      {0,0,0,0,0,0,0,0,0},  
-               -- }
-     -- m={
-     --      {1,2,3,4,5,6,7,8,9},
-     --      {4,5,6,7,8,9,1,2,3},
-     --      {7,8,9,1,2,3,4,5,6},
-     --      {2,3,4,5,6,7,8,9,1},
-     --      {5,6,7,8,9,1,2,3,4},
-     --      {8,9,1,2,3,4,5,6,7},
-     --      {6,7,8,9,1,2,3,4,5},
-     --      {9,1,2,3,4,5,6,7,8},
-     --      {3,4,5,6,7,8,9,1,2},
-     -- }
-
-
-     -- }
-
-     -- m={
-     --      {1,2,3,4,5,6,7,8,9},
-     --      {4,5,6,7,8,9,1,2,3},
-     --      {7,8,9,1,2,3,4,5,6},
-     --      {2,3,4,5,6,7,8,9,1},
-     --      {5,6,7,8,9,1,2,3,4},
-     --      {8,9,1,2,3,4,5,6,7},
-     --      {6,7,8,9,1,2,3,4,5},
-     --      {9,1,2,3,4,5,6,7,8},
-     --      {3,4,5,6,7,8,9,1,2},
-     -- }
-
-     
 end
  
 function love.update(dt)
-	-- player.act_y = player.act_y - ((player.act_y - player.grid_y) * player.speed * dt)
-     -- player.act_x = player.act_x - ((player.act_x - player.grid_x) * player.speed * dt)
-     
-     -- x = x
-     -- y = y
-     -- -- if love.mouse.isDown(2) then
-     -- --      mx = love.mouse.getX()
-     -- --      my =  love.mouse.getY() -- we will increase the variable by 1 for every second the button is held down
-     -- -- end
 
-     -- mx, my = love.mouse.getPosition()
-     -- x = mx
-     -- y = my
-
-     -- if v == "5" then
-     --      print(v)
-     -- endt
+	
      if startf then
       timee= (timee + 1)
+      
      end
   
      
@@ -109,6 +70,8 @@ function love.update(dt)
 end
  
 function love.draw()
+
+     if startf then
 
 
      for i=1 ,9 do
@@ -130,15 +93,8 @@ function love.draw()
 
      end
 
-     -- love.graphics.setFont(myfount)
-     love.graphics.setColor(1,1,1)
-     love.graphics.print("SUDOKU__",570,30)
 
-     love.graphics.setColor(1,1,1)
-     love.graphics.print("time",570,50)
-
-     love.graphics.setColor(1,1,1)
-     love.graphics.print(timee/100,570,70)
+     
 
 
      
@@ -177,30 +133,47 @@ function love.draw()
      --      end
      -- end
 
+else 
+
+     love.graphics.setColor(0.4,0.4,0.5,1.0)
+     love.graphics.print("game options \n s -> Start the Game\n q -> Quit the Game \n ",50,100)
+end
+
+     love.graphics.setFont(myfount)
+     love.graphics.setColor(1,1,1)
+     love.graphics.print("SUDOKU__",570,30)
+
+     love.graphics.setColor(1,1,1)
+     love.graphics.print("time_'s'",570,50)
+
+     love.graphics.setColor(1,1,1)
+     love.graphics.print(timee/100,570,70)
+
 
 
      bx=570
      
      -- by=
     
-     love.graphics.setColor(0.4,0.4,0.5,1.0)
-     love.graphics.print("game options \n s -> Start the Game\n q -> Quit the Game \n ",570,400)
+     love.graphics.setColor(sbutton.c)
+     love.graphics.print("game options \n s -> Start the Game\n q -> Quit the Game \n v -> Validate  ",570,400)
 
-     love.graphics.rectangle("fill",bx,100,200,50,12)
+     -- love.graphics.rectangle("fill",sbutton.x,sbutton.y,sbutton.width,sbutton.height,12)
 
-     love.graphics.rectangle("fill",bx,180,200,50,12)
 
-     love.graphics.rectangle("fill",bx,260,200,50,12)
+     -- -- love.graphics.rectangle("fill",bx,180,200,50,12)
+
+     -- love.graphics.rectangle("fill",ebutton.x,ebutton.y,ebutton.width,ebutton.height,12)
 
 
      
 
      
-     love.graphics.setColor(1,1,1)
-     -- love.graphics.setFont()
-     love.graphics.print("Start Game",bx+60,110)
-     love.graphics.print("Restrat Game",bx+60,190)
-     love.graphics.print("Exit Game",bx+60,270)
+     -- love.graphics.setColor(1,1,1)
+     -- -- love.graphics.setFont()
+     -- love.graphics.print("Start Game",sbutton.x+60,sbutton.y)
+     -- -- love.graphics.print("Restrat Game",bx+60,190)
+     -- love.graphics.print("Exit Game",ebutton.x+60,ebutton.y)
      
      
 
@@ -283,9 +256,39 @@ function love.keypressed(key)
 
      
      if key == "v" then
-          for i=1,9 do
-               flag = t1.validate(x,y,m,i)
+          local r = 0
+          local c=0
+
+          --validation
+          for k=1,9 do
+
+           for i=1 ,9 do
+               -- print(m[k][i])
+               r = r + m[k][i]
+           end
+          if r == 45 then
+               print("row valid")
+               flag = true
+          else
+               print("row notvalid!!")
+               flag = false
           end
+
+          for j=1,9 do
+               c = c + m[j][k]
+          end
+          if c == 45 then
+          print("column valid")
+               flag =true
+          else
+               print("column notvalid!!")
+               flag =false
+          end
+          
+          end
+
+          
+          
      end
  
      if key == "q" or ker =="Q" then
@@ -296,8 +299,20 @@ function love.keypressed(key)
      if key == "s" or key == "S" then 
           startf = true
      end
+
     
 
+end
+
+function love.mousepressed(x,y)
+	
+		if x > sbutton.x and x < sbutton.x + sbutton.width and y > sbutton.y and y < sbutton.height then -- Checks if the mouse is on the button
+			-- for i=1, #button.c do --Simple numeric loop that sets the buttons color to a random one
+			-- 	button.c[i] = math.random(0, 255)
+               -- end
+               print("start button click")
+		end
+	
 end
 
 
