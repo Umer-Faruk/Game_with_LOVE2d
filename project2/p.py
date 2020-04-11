@@ -1,69 +1,4 @@
-# #validating
 
-# import numpy as np
-
-# m =[[1,2,3,4,1,6,7,8,9],
-#      [4,5,6,7,8,9,1,2,3],
-#      [1,8,9,1,2,3,4,5,6],
-#      [0,2,3,4,5,3,5,6,1],
-#      [0,2,3,4,5,3,5,6,1],
-#      [3,2,3,4,5,3,5,6,1],
-#      [1,2,1,4,5,3,5,6,1],
-#      [0,2,3,4,5,3,5,6,1],
-#      [0,2,3,4,5,3,5,6,1]]
-
-# print(np.matrix(m))
-
-
-# # def valid(x,y,n):
-# #      global m
-# #      for i in range(0,9):
-# #           if m[i][x] == n:
-# #                print("false")
-
-# # valid(1,1,2)
-# n=0
-# x=2
-# y=1
-# v = 3
-
-# def valid(v,x,y):
-#      r = 0
-#      c = 0
-#      b =0
-#      for i in range(9):
-#          if m[x][i] == v  :
-#                r += 1
-#                if r >=2  :
-#                     print(" row same")
-#                     print(c)
-#                     return False
-              
-
-#      for j in range(9):
-#           print(m[j][y])
-#           if m[j][y] == v :
-#                c += 1
-#                if c >= 2:
-#                     print(" colum same")
-#                     return False
-
-
-#      for i in range(3):
-#           for j in range(3):
-#                print(m[i][j])
-#                if m[i+(x//3)*3][j+(y//3)*3] == v:
-#                     b += 1
-#                     if b >= 2 :
-#                          print(" box same")
-#                          return False
-#      # return True
-
-
-# print(valid(int(input("enter value")),int(input("enter x pos")),int(input("enter y pos"))))
-
-# l =[1,-1,2,3,-3,-2]
-# print(sum(l))
 
 class node:
      def __init__(self,data):
@@ -79,6 +14,7 @@ class Linkedlist:
           while(temp):
                print(temp.data,end = "->")
                temp = temp.next
+          print("")
      def fpush(self,newdata):
           new_node = node(newdata)
           new_node.next = self.head
@@ -94,8 +30,25 @@ class Linkedlist:
           while thead.next:
                thead = thead.next
           thead.next  = new_node 
+     def Revll(self):
+     
+          pp = None
+          np = None
+          cp = self.head
 
+          while cp:
+               np = cp.next
+               cp.next = pp
+               cp = np
+               pp = cp
+          self.head = pp
 
+def Revprintll(n):
+
+     tn = n
+     if tn:
+          Revprintll(tn.next)
+          print(tn.data,end="->")
 
 
 if __name__ =='__main__':
@@ -111,7 +64,13 @@ if __name__ =='__main__':
      ll.fpush(int(input("enter the node at first")))
      ll.lprint()
      ll.lpush(int(input("enter the node at last")))
+     # ll.lprint()
+     Revprintll(ll.head)
+     print("")
      ll.lprint()
+     ll.Revll()
+     ll.lprint()
+
 
 
 
