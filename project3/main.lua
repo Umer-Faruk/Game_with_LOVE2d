@@ -129,8 +129,7 @@ function love.draw()
      love.graphics.setColor(1,0,0)
      love.graphics.rectangle('fill',wall2.x+400,wall2.height+emts,wall.width,800-wall.height-emts,10)
 
-     -- love.graphics.print(blife,700,50)
-     -- bscr = bscr + 1
+    
    
      
      if blife == 0 then
@@ -144,11 +143,13 @@ function love.draw()
 end
 
 function love.keypressed(key)
-     -- print(key)
+    
      if key == 'up' then
           if bard.y >= 2 then
                yspeed = -200
           end
+          -- love.graphics.rectangle('fill',bard.x,bard.y,bard.width+10,bard.height+10,100)
+
 
      end
      if key == 'right' then
