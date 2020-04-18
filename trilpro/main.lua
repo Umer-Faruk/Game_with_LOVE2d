@@ -1,5 +1,9 @@
 local hero = {x=500,y=500,width = 40 ,height = 40,c ={1,1,0},speed = 300}
+local vil = {x=50,y=50,width=50,height=50}
 local b2 = {x=80,y=80,width= 40,height=40,c={0,0,1}}
+
+
+
 require("first")
 canShoot = true
 canShootTimerMax = 0.2
@@ -22,14 +26,16 @@ function love.load()
      
      bimage = love.graphics.newImage('bullet.png')
      bullets = {}
+     -- print(vil.x,vil.y,vil.width,vil.height)
+
 
 end
 
--- function iscollide(ax,ay,aw,ah,bx,by,bw,bh)
+function iscollide(ax,ay,aw,ah,bx,by,bw,bh)
 
-     
+     return ax < bx+bw and ay < by+bh and bx < ax+aw and by < ay+ah 
 
--- end
+end
 
 function love.update(dt)
 
@@ -57,8 +63,10 @@ function love.update(dt)
        canShoot = true
      end
 
+     
+
      if love.keyboard.isDown('f') and canShoot then
-          newbullet = {x = hero.x , y = hero.y,img = bimage}
+          newbullet = {x = hero.x , y = hero.y, width = 2,height=4, img = bimage}
           table.insert(bullets,newbullet)
 
           canShoot = false
@@ -69,6 +77,10 @@ function love.update(dt)
      -- update the positions of bullets
      for i, bullet in ipairs(bullets) do
           bullet.y = bullet.y - (250 * dt)
+          print(bullet.x,bullet.y,bullet.width,bullet.height)
+          if iscollide(bullet.x,bullet.y,bullet.width,bullet.height,vil.x,vil.y,vil.width,vil.height) then
+               table.remove(bullets,i)
+          end
           if bullet.y < 0 then -- remove bullets when they pass off the screen
                table.remove(bullets, i)
              end
@@ -77,7 +89,7 @@ function love.update(dt)
 
 
 
-     
+
 
 
 
@@ -92,6 +104,8 @@ function love.draw()
      -- for i,v in ipairs(magazine) do
 	-- 	love.graphics.rectangle("fill", v.x, v.y, v.width, v.height)
      -- end	
+
+     love.graphics.rectangle("fill",vil.x,vil.y,vil.width,vil.height)
    
      
      for i, bullet in ipairs(bullets) do

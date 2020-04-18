@@ -38,7 +38,7 @@ function Enemy:update(dt)
      end
  
      if love.keyboard.isDown('w') and canShoot then
-          newbullet = {x = self.p1.x , y = self.p1.y,img = self.bimage}
+          newbullet = {x = self.p1.x+20 , y = self.p1.y, width= 2 ,height=4, img = self.bimage}
 
           if nbullet < mnbullet then
           table.insert(self.bullets,newbullet)
@@ -52,7 +52,19 @@ function Enemy:update(dt)
  
      -- update the positions of bullets
      for i, bullet in ipairs(self.bullets) do
-          bullet.y = bullet.y - (250 * dt)
+          bullet.y = bullet.y - (bulletspeed * dt)
+          for j ,box in ipairs(boxs) do
+               if iscollide(bullet.x,bullet.y,bullet.width,bullet.height,box.x,box.y,box.width,box.height) then
+                   table.remove(boxs,j)
+                   table.remove(self.bullets,i)
+                   mb:createbox()
+               end
+          end
+
+          if iscollide(bullet.x,bullet.y,bullet.width,bullet.height,p1bullethose.x,p1bullethose.y,p1bullethose.width,p1bullethose.height) then
+               table.remove(self.bullets,i)
+          end
+
           if bullet.y < 0 then -- remove bullets when they pass off the screen
                table.remove(self.bullets, i)
              end
@@ -72,13 +84,16 @@ function Enemy:draw()
      love.graphics.setColor(self.p1.c)
      love.graphics.rectangle("fill",self.p1.x,self.p1.y,self.p1.width,self.p1.heigth)
 
+   
 
+     -- love.graphics.setColor(1,0,0)
      for i, bullet in ipairs(self.bullets) do
           love.graphics.draw(bullet.img, bullet.x, bullet.y)
         end
 
         --bullet room
-
+        love.graphics.setColor(0,0,0)
+        love.graphics.print("left",self.p1.x,self.p1.y)
         
 
 end
